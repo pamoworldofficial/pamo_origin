@@ -1,0 +1,1 @@
+# pamo_origin
