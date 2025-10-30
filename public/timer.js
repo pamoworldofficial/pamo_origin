@@ -14,18 +14,15 @@ const TEXTS = {
         },
         initialDisplay: "00:00",
         adjust: {
-            60: "+1분",
-            600: "+10분",
-            1800: "+30분",
-            "-60": "-1분",
-            "-600": "-10분",
-            "-1800": "-30분",
             1: "+1초",
             10: "+10초",
-            30: "+30초",
+            60: "+1분",
+            300: "+5분",
+            600: "+10분",
+            3600: "+60분",
             "-1": "-1초",
             "-10": "-10초",
-            "-30": "-30초"
+            "-60": "-1분"
         },
         alarms: {
             mute: "🔇",
@@ -41,6 +38,8 @@ const TEXTS = {
 let timer = null;
 let remainingTime = 0;    // 현재 남은 시간 (초 단위)
 let lastSetTime = 0;      // 설정 시간 (초 단위)
+
+const DEFAULT_TITLE = document.title;
 
 const backToMainBtn = document.getElementById("backToMain");
 const timerDisplay = document.getElementById("timerDisplay");
@@ -72,7 +71,15 @@ function setControlsDisabled(disabled) {
 function updateDisplay() {
     const minutes = Math.floor(remainingTime / 60);
     const seconds = remainingTime % 60;
-    timerDisplay.textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    const formatted = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+
+    timerDisplay.textContent = formatted;
+
+    if (remainingTime > 0) {
+        document.title = `${formatted} - 메랜파모 타이머`;
+    } else {
+        document.title = DEFAULT_TITLE;
+    }
 }
 
 function applyInputToTime() {

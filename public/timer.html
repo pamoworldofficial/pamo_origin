@@ -36,42 +36,37 @@
     <div id="timerDisplay"></div>
 
     <!-- 입력 영역 -->
-    <div>
+    <div class="input-group">
       <input type="number" id="minuteInput" min="0" value="0">
       <span id="minuteLabel"></span>
       <input type="number" id="secondInput" min="0" max="59" value="0">
       <span id="secondLabel"></span>
     </div>
 
-    <!-- 분 조절 버튼 -->
-    <div>
-      <button data-adjust="60"></button>
-      <button data-adjust="600"></button>
-      <button data-adjust="1800"></button>
-      <button data-adjust="-60"></button>
-      <button data-adjust="-600"></button>
-      <button data-adjust="-1800"></button>
-    </div>
-
-    <!-- 초 조절 버튼 -->
-    <div>
+    <div class="plus-group">
       <button data-adjust="1"></button>
       <button data-adjust="10"></button>
-      <button data-adjust="30"></button>
+      <button data-adjust="60"></button>
+      <button data-adjust="300"></button>
+      <button data-adjust="600"></button>
+      <button data-adjust="3600"></button>
+    </div>
+
+    <div class="minus-group">
       <button data-adjust="-1"></button>
       <button data-adjust="-10"></button>
-      <button data-adjust="-30"></button>
+      <button data-adjust="-60"></button>
     </div>
 
     <!-- 메인 버튼 -->
-    <div>
+    <div class="buttons-group">
       <button id="startBtn"></button>
       <button id="pauseBtn"></button>
       <button id="resetBtn"></button>
     </div>
 
     <!-- 자동 반복 -->
-    <div>
+    <div class="repeat-group">
       <label>
         <input type="checkbox" id="autoRepeat">
         <span id="autoRepeatLabel"></span>
