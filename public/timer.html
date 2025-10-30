@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>메랜파모 - 메이플랜드 타이머</title>
+  <!-- SEO -->
+  <meta name="description" content="버프 시간을 편하게 관리하세요." />
+  <meta name="keywords" content="메이플랜드, 타이머, 버프 타이머, 심 타이머, 메랜파모" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pamo.world/timer">
+  <meta property="og:title" content="메랜파모 - 메이플랜드 타이머" />
+  <meta property="og:description" content="각종 버프 시간을 알람으로 편하게 관리하세요." />
+  <meta property="og:image" content="https://pamo.world/og-timer.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="메랜파모 - 메이플랜드 타이머" />
+  <meta name="twitter:description" content="각종 버프 시간을 알람으로 편하게 관리하세요." />
+  <meta name="twitter:image" content="https://pamo.world/og-timer.jpg">
+
+  <link rel="stylesheet" href="timer.css">
+</head>
+
+<body>
+  <header>
+    <button id="backToMain"></button>
+  </header>
+
+  <main>
+    <div id="timerDisplay"></div>
+
+    <!-- 입력 영역 -->
+    <div>
+      <input type="number" id="minuteInput" min="0" value="0">
+      <span id="minuteLabel"></span>
+      <input type="number" id="secondInput" min="0" max="59" value="0">
+      <span id="secondLabel"></span>
+    </div>
+
+    <!-- 분 조절 버튼 -->
+    <div>
+      <button data-adjust="60"></button>
+      <button data-adjust="600"></button>
+      <button data-adjust="1800"></button>
+      <button data-adjust="-60"></button>
+      <button data-adjust="-600"></button>
+      <button data-adjust="-1800"></button>
+    </div>
+
+    <!-- 초 조절 버튼 -->
+    <div>
+      <button data-adjust="1"></button>
+      <button data-adjust="10"></button>
+      <button data-adjust="30"></button>
+      <button data-adjust="-1"></button>
+      <button data-adjust="-10"></button>
+      <button data-adjust="-30"></button>
+    </div>
+
+    <!-- 메인 버튼 -->
+    <div>
+      <button id="startBtn"></button>
+      <button id="pauseBtn"></button>
+      <button id="resetBtn"></button>
+    </div>
+
+    <!-- 자동 반복 -->
+    <div>
+      <label>
+        <input type="checkbox" id="autoRepeat">
+        <span id="autoRepeatLabel"></span>
+      </label>
+    </div>
+
+    <!-- 알람 소리 선택 -->
+    <div id="alarmSelector">
+      <input type="radio" name="alarmType" value="mute" id="alarmMute" checked>
+      <label for="alarmMute" class="alarmOption">
+        <span class="icon"></span>
+      </label>
+
+      <input type="radio" name="alarmType" value="beep" id="alarmBeepOpt">
+      <label for="alarmBeepOpt" class="alarmOption">
+        <span class="icon"></span>
+      </label>
+
+      <input type="radio" name="alarmType" value="cackle" id="alarmCackleOpt">
+      <label for="alarmCackleOpt" class="alarmOption">
+        <span class="icon"></span>
+      </label>
+    </div>
+
+    <!-- 알람 사운드 파일 -->
+    <audio id="alarmBeep" src="beep.mp3" preload="auto"></audio>
+    <audio id="alarmCackle" src="cackle.mp3" preload="auto"></audio>
+  </main>
+
+  <!-- 알람 오버레이 -->
+  <div id="alarmOverlay"></div>
+
+  <script src="timer.js"></script>
+</body>
+
+</html>

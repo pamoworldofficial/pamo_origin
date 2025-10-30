@@ -1,0 +1,920 @@
+/* ========================================
+   색상 변수 (Theme Colors)
+======================================== */
+:root {
+  --primary: #6d8dd8;
+  --primary-dark: #516cab;
+  --success: #4e9e67;
+  --success-dark: #3a7a52;
+  --danger: #c75d5d;
+  --danger-dark: #a94442;
+  --text-color: #222;
+  --bg-color: #f4f4f9;
+  --card-bg: #fff;
+  --border-color: #ccc;
+  --input-bg: #fff;
+  --list-bg: #fafafa;
+  --warning-color: #FF9900;
+  --warning-color-dark: #CC7A00;
+  --extra-info-color: #555;
+}
+
+/* ========================================
+   기본 스타일 및 레이아웃 (Base Layout)
+======================================== */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+header h1 {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(1.5rem, 6vw, 2rem);
+  white-space: nowrap;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.3rem;
+}
+
+#allPartiesSection h2 {
+  margin-bottom: 0.1rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  background-color: var(--list-bg);
+  margin-bottom: 0.6rem;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+footer {
+  text-align: center;
+  padding: 12px;
+  font-size: 14px;
+  color: #666;
+  border-top: 1px solid #e0e0e0;
+  position: relative;
+}
+
+.contact-text {
+  display: inline-block;
+  position: relative;
+}
+
+#email {
+  cursor: pointer;
+}
+
+#copyIcon {
+  position: absolute;
+  opacity: 0;
+  margin-left: 4px;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+#email:hover+#copyIcon {
+  opacity: 1;
+}
+
+/* ========================================
+   폼 입력 요소 (Forms & Inputs)
+======================================== */
+input[type="text"],
+input[type="number"],
+select,
+.position-input,
+#partyNameInput {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+
+input:disabled,
+select:disabled {
+  background-color: #f0f0f0;
+  color: #999999;
+  border: 1px solid #ccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+input:focus,
+select:focus,
+.position-input:focus,
+#partyNameInput:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23999'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 10px 6px;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.form-row .half {
+  flex: 1;
+}
+
+#partySearchInput {
+  margin-bottom: 12px;
+}
+
+/* ========================================
+   버튼 스타일 (Buttons)
+======================================== */
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+button:disabled {
+  background-color: #d6d6d6;
+  cursor: not-allowed;
+  color: #777;
+}
+
+/* 기본 버튼 스타일 */
+.button-primary,
+.party-controls-container button,
+.details-btn,
+#createPartyBtn {
+  background-color: var(--primary);
+  color: white;
+}
+
+.button-primary:hover:not(:disabled),
+.party-controls-container button:hover,
+.details-btn:hover,
+#createPartyBtn:hover:not(:disabled) {
+  background-color: var(--primary-dark);
+}
+
+#partyDescriptionContainer button:disabled {
+  background-color: #d6d6d6;
+  color: #777;
+  pointer-events: none;
+}
+
+.party-controls-container .refresh-button {
+  background-color: #20c997;
+  color: #fff;
+}
+
+.party-controls-container .refresh-button:hover {
+  background-color: #17a589;
+  color: #fff;
+}
+
+.party-controls-container .refresh-button:disabled {
+  background-color: #d6d6d6;
+  cursor: not-allowed;
+  color: #777;
+  pointer-events: none;
+}
+
+.party-controls-container .leave-button {
+  background-color: var(--warning-color);
+  color: #fff;
+}
+
+.party-controls-container .leave-button:hover {
+  background-color: var(--warning-color-dark);
+  color: #fff;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* =========================================
+   🔒 비밀 파티 버튼 - 기본 상태 (꺼진 전구)
+========================================= */
+#createPrivatePartyBtn.private-button {
+  background-color: #d4b056;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#createPrivatePartyBtn.private-button:hover:not(.private-active):not(:disabled) {
+  background-color: #ffb300;
+}
+
+/* =========================================
+   🔒 비밀 파티 버튼 - 반짝이 애니메이션 정의
+========================================= */
+@keyframes sparkle {
+
+  0%,
+  100% {
+    background-color: #ffb300;
+    box-shadow: 0 0 8px rgba(255, 179, 0, 0.6);
+  }
+
+  50% {
+    background-color: #ffb300;
+    box-shadow: 0 0 20px rgba(255, 193, 7, 1);
+  }
+}
+
+/* =========================================
+   🔒 비밀 파티 버튼 - 활성 상태 (반짝이기)
+========================================= */
+#createPrivatePartyBtn.private-button.private-active {
+  animation: sparkle 1.2s infinite ease-in-out;
+}
+
+/* ========================================
+   지원금 버튼 스타일 (Grant Button)
+======================================== */
+.grant-btn {
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  color: #555;
+}
+
+.grant-btn.selected-grant {
+  background-color: #66bb6a;
+  box-shadow: 0 0 15px rgba(102, 187, 106, 0.8);
+  color: #fff;
+}
+
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9999;
+}
+
+.toast {
+  background: #66bb6a;
+  /* 밝은 산뜻한 녹색 */
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  font-size: 14px;
+  line-height: 1.4;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 왕관 버튼 */
+.crown-btn {
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  color: #555;
+}
+
+.crown-btn:hover:not(:disabled) {
+  background-color: #fff176;
+  box-shadow: 0 0 8px #ffd93b;
+}
+
+.crown-btn:disabled {
+  background-color: #ffd93b;
+  border-color: #ffca28;
+  color: #fff;
+  cursor: not-allowed;
+  box-shadow: 0 0 12px rgba(255, 217, 59, 0.9);
+  opacity: 1;
+}
+
+/* 수락, 거절 버튼 */
+.accept {
+  color: white;
+  background-color: var(--success);
+}
+
+.accept:hover {
+  background-color: var(--success-dark);
+}
+
+.reject,
+.remove-position-btn {
+  background-color: var(--danger);
+  color: white;
+}
+
+.reject:hover,
+.remove-position-btn:hover {
+  background-color: var(--danger-dark);
+}
+
+/* 아이콘 버튼 */
+.icon-button {
+  background-color: var(--success);
+  color: white;
+  width: 60px;
+}
+
+.icon-button:hover {
+  background-color: var(--success-dark);
+}
+
+/* 강퇴 버튼 */
+.kick {
+  background-color: #d9534f;
+  color: white;
+  font-size: 10px;
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+.kick:hover {
+  background-color: #c9302c;
+}
+
+.small-button {
+  font-size: 12px;
+  padding: 3px 6px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+/* 모집 완료 버튼 (초록) */
+.green-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.green-button:hover {
+  background-color: #45A049;
+}
+
+/* 완료 취소 버튼 (노랑) */
+.yellow-button {
+  background-color: #FFC107;
+  color: black;
+}
+
+.yellow-button:hover {
+  background-color: #E0A800;
+}
+
+/* ========================================
+   접속자 수 표시 (Connected Count)
+======================================== */
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.connected-count {
+  font-size: 0.9rem;
+  color: var(--extra-info-color);
+  margin-top: 0.1rem;
+  margin-bottom: 0.75rem;
+  animation: pulse 3s infinite;
+  transition: color 0.3s;
+}
+
+/* ========================================
+   구성 요소 배치 (Layout Components)
+======================================== */
+.positions-list {
+  margin: 10px 0 1rem 0;
+  padding: 10px 20px;
+  background-color: #f1f1f1;
+  border-left: 4px solid var(--primary);
+  overflow-x: auto;
+}
+
+.positions-list li {
+  margin: 5px 0px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.position-row,
+.party-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.party-name-row {
+  margin-bottom: 1rem;
+}
+
+.party-controls-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.party-member-info {
+  flex-direction: column;
+  align-items: flex-start;
+  white-space: normal;
+  gap: 4px;
+}
+
+.join-request-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 10px;
+}
+
+.member-info .info-container,
+.party-member-info .info-container,
+.join-request-item .info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  min-width: 0;
+}
+
+.member-info .main-info {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.member-info .extra-info,
+.party-member-info .extra-info,
+.join-request-item .extra-info {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--extra-info-color);
+  font-size: 0.9rem;
+}
+
+.join-request-item .button-container {
+  flex-shrink: 0;
+}
+
+/* ========================================
+   토글 버튼 (Toggle Buttons)
+======================================== */
+button[id^="toggle"],
+#toggleMyInfoBtn {
+  display: none;
+  background-color: transparent;
+  font-size: 1rem;
+  color: var(--primary);
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+}
+
+button[id^="toggle"]:hover,
+#toggleMyInfoBtn:hover {
+  background-color: #e0eaff;
+}
+
+button[aria-expanded="true"] {
+  color: #28a745;
+}
+
+button[aria-expanded="false"] {
+  color: var(--primary);
+}
+
+/* ========================================
+   메시지 / 애니메이션 (Messages & Animations)
+======================================== */
+#saveMsg {
+  flex-grow: 1;
+  padding-right: 10px;
+}
+
+.fade-message {
+  font-size: 0.8rem;
+  animation: fadeOut 3s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.input-error {
+  border-color: var(--danger) !important;
+  background-color: #fff0f0;
+}
+
+/* ========================================
+   다크 모드 (Dark Mode)
+======================================== */
+html.dark-mode {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --card-bg: #1e1e1e;
+  --input-bg: #2c2c2c;
+  --border-color: #555;
+  --list-bg: #2c2c2c;
+  --extra-info-color: #aaa;
+}
+
+html.dark-mode li {
+  background-color: transparent;
+  color: #f0f0f0;
+}
+
+html.dark-mode ul li {
+  background-color: #2c2c2c;
+  color: #e0e0e0;
+  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.05);
+}
+
+html.dark-mode .positions-list {
+  background-color: #1f1f1f;
+  border-left-color: #0d6efd;
+  color: #e0e0e0;
+}
+
+html.dark-mode .input-error {
+  border-color: #ff6b6b !important;
+  background-color: #3b1f1f;
+  color: #fff;
+}
+
+html.dark-mode input:disabled {
+  background-color: #2a2a2a;
+  color: #777777;
+  border: 1px solid #555555;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ========================================
+   사용자 정보 영역 (My Info & Party)
+======================================== */
+#myInfoSection .form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+#myInfoSection .form-group.half {
+  width: 100%;
+}
+
+#myInfoSection .level-category-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+#infoContent {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+#saveUserBtn {
+  margin-left: auto;
+}
+
+#partyButtonsContainer {
+  display: flex;
+  justify-content: flex-end;
+  /* 오른쪽 정렬 */
+  gap: 10px;
+  /* 버튼 사이 간격 */
+}
+
+#createPartyBtn:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+#createPartyBtn:disabled {
+  background-color: #d6d6d6;
+  cursor: not-allowed;
+  color: #777;
+}
+
+/* ========================================
+   자동완성 (Awesomplete)
+======================================== */
+.awesomplete {
+  width: 100% !important;
+}
+
+.awesomplete li {
+  display: block;
+  text-align: left;
+  padding: 5px 10px;
+  list-style-type: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* ========================================
+   파티 멤버 정보 스타일 (Party Member Info)
+======================================== */
+.member-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.member-info .pos {
+  flex: 0 0 190px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ========================================
+   레이아웃 구조 (Main Layout Grid)
+======================================== */
+.top-sections {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  /* 내 정보는 고정, 파티는 유동 */
+  gap: 1rem;
+}
+
+#myInfoSection,
+#myPartySection {
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+#partyDescriptionContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+
+#partyDescriptionContainer input {
+  flex: 1;
+}
+
+#partyDescriptionContainer .edit-btn {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+#partyDescriptionContainer .edit-btn:hover:not(:disabled) {
+  background-color: var(--primary-dark);
+}
+
+/* ========================================
+   반응형 레이아웃 (Responsive)
+======================================== */
+@media (max-width: 850px) {
+  .top-sections {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  #toggleMyInfoBtn {
+    display: block;
+  }
+
+  /* 내 정보 영역 내부 2x2 그리드 복구 */
+  #myInfoSection .form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  #myInfoSection .form-row.job-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  #myInfoSection .form-group {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 0.8rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  button,
+  input[type="text"],
+  input[type="number"] {
+    font-size: 0.9rem;
+  }
+
+  .member-info {
+    flex-direction: column;
+    align-items: flex-start;
+    white-space: normal;
+  }
+
+  .member-info .pos {
+    flex: none;
+    width: auto;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+
+  .join-request-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .join-request-item .info-container {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .join-request-item .extra-info {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .button-container button {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 400px) {
+  #myInfoSection .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  #myInfoSection .form-group {
+    width: 100%;
+  }
+
+  #myInfoSection .form-row.job-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+/* ========================================
+   로딩 오버레이 (Loading Overlay)
+======================================== */
+#mainUI {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#mainUI.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+#loadingOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+  z-index: 9999;
+}
+
+#loadingOverlay.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ========================================
+   기타
+======================================== */
+#partyList li span {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

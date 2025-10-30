@@ -1,0 +1,228 @@
+/* ===== 기본 설정 ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Noto Sans KR', sans-serif;
+}
+
+body {
+    background: #1e1e2f;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    position: relative;
+    /* overlay 위치 기준 */
+}
+
+/* ===== 헤더 ===== */
+header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+header button {
+    background: none;
+    border: none;
+    color: #8f90ff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+header button:hover {
+    color: #ffffff;
+}
+
+/* ===== 메인 타이머 표시 ===== */
+#timerDisplay {
+    font-size: 5rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 20px 0 40px;
+    color: #ffffff;
+    letter-spacing: 2px;
+}
+
+/* ===== 입력 영역 ===== */
+main>div {
+    margin: 10px 0;
+    text-align: center;
+}
+
+input[type="number"] {
+    width: 70px;
+    padding: 8px;
+    margin: 0 5px;
+    border: 1px solid #3a3a50;
+    border-radius: 10px;
+    background: #2b2b3d;
+    color: #fff;
+    font-size: 1rem;
+    text-align: center;
+    transition: border 0.3s, background 0.3s;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border: 1px solid #7a7aff;
+    background: #35354a;
+}
+
+/* ===== 버튼 스타일 공통 ===== */
+button {
+    margin: 5px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+/* 숫자 조절 버튼 */
+button[data-adjust] {
+    background: #2b2b3d;
+    color: #ddd;
+}
+
+button[data-adjust]:hover {
+    background: #3a3a50;
+    color: #ffffff;
+}
+
+/* ===== 메인 버튼 ===== */
+#startBtn {
+    background: #2e8b57;
+    color: #fff;
+}
+
+#pauseBtn {
+    background: #d45d5d;
+    color: #fff;
+}
+
+#resetBtn {
+    background: #6a5acd;
+    color: #fff;
+}
+
+#startBtn:hover,
+#pauseBtn:hover,
+#resetBtn:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+/* ===== 체크박스 ===== */
+label {
+    font-size: 0.9rem;
+    color: #bbb;
+    margin-left: 10px;
+}
+
+input[type="checkbox"] {
+    accent-color: #7a7aff;
+    transform: scale(1.2);
+    margin-right: 6px;
+}
+
+/* ===== 알람 효과 ===== */
+@keyframes glow {
+
+    0%,
+    100% {
+        text-shadow: 0 0 8px rgba(255, 50, 50, 0.6);
+        color: #ffffff;
+    }
+
+    50% {
+        text-shadow: 0 0 25px rgba(255, 80, 80, 0.9);
+        color: #ff4d4d;
+    }
+}
+
+#timerDisplay.alarm {
+    animation: glow 1s ease-in-out infinite;
+}
+
+/* 화면 Overlay */
+#alarmOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 0, 0, 0.8);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 999;
+}
+
+#alarmOverlay.active {
+    animation: overlay-blink 1s ease-in-out infinite;
+}
+
+@keyframes overlay-blink {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* 알람 선택 영역 */
+#alarmSelector {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+/* input 숨김 */
+#alarmSelector input {
+    display: none;
+}
+
+/* 카드 버튼 스타일 */
+.alarmOption {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 72px;
+    height: 72px;
+    border-radius: 12px;
+    border: 2px solid #3a3a50;
+    background: #2b2b3d;
+    color: #bbb;
+    font-size: 26px;
+    cursor: pointer;
+    transition: background 0.2s, border 0.2s, color 0.2s;
+}
+
+/* hover 효과 - subtle */
+.alarmOption:hover {
+    background: #34344a;
+    border-color: #5a5aff;
+    color: #fff;
+}
+
+/* 선택된 상태 */
+#alarmSelector input:checked+.alarmOption {
+    border-color: #7a7aff;
+    background: #35355a;
+    color: #fff;
+}

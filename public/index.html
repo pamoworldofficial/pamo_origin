@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>메랜파모 - 메이플랜드 파티 모집</title>
+  <meta name="description" content="빠르고 간편한 파티 모집, 메랜파모와 함께 시작하세요." />
+  <meta name="keywords" content="메이플랜드, 파티모집, 메랜파모, 파모" />
+  <meta name="author" content="pamo.world" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pamo.world/">
+  <meta property="og:title" content="메랜파모 - 메이플랜드 파티 모집" />
+  <meta property="og:description" content="빠르고 간편한 파티 모집, 메랜파모와 함께 시작하세요." />
+  <meta property="og:image" content="https://pamo.world/og-image.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="메랜파모 - 메이플랜드 파티 모집" />
+  <meta name="twitter:description" content="빠르고 간편한 파티 모집, 메랜파모와 함께 시작하세요." />
+  <meta name="twitter:image" content="https://pamo.world/og-image.jpg">
+
+  <!-- 파비콘 -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="메랜파모" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <script>
+    (function () {
+      const stored = localStorage.getItem('darkMode');
+      if (stored === 'enabled') {
+        document.documentElement.classList.add('dark-mode');
+      } else if (stored === 'disabled') {
+        document.documentElement.classList.remove('dark-mode');
+      } else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.classList.toggle('dark-mode', prefersDark);
+        localStorage.setItem('darkMode', prefersDark ? 'enabled' : 'disabled');
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.css" />
+</head>
+
+<body>
+  <header>
+    <h1></h1>
+    <div class="header-buttons">
+      <button id="timerPageBtn" aria-label="Go to timer page"></button>
+      <button id="darkModeToggle" aria-label="Toggle dark mode"></button>
+    </div>
+  </header>
+
+  <div id="mainUI">
+    <div id="loadingOverlay"></div>
+    <div class="top-sections">
+      <section id="myInfoSection" class="card">
+        <div class="section-header">
+          <h2></h2>
+          <button id="toggleMyInfoBtn" aria-expanded="true" aria-controls="MyinfoContents"></button>
+        </div>
+        <div id="MyinfoContents">
+          <div class="form-row">
+            <div class="form-group">
+              <input id="nicknameInput" type="text" />
+            </div>
+            <div class="form-group">
+              <input id="socialCodeInput" type="text" maxlength="6" />
+            </div>
+          </div>
+
+          <div class="form-row job-row">
+            <div class="level-category-group">
+              <div class="form-group">
+                <input type="number" id="levelInput" min="1" max="200" />
+              </div>
+              <div class="form-group">
+                <select id="jobCategorySelect" required>
+                  <option value="" selected disabled></option>
+                  <option value="전사">전사</option>
+                  <option value="법사">법사</option>
+                  <option value="궁수">궁수</option>
+                  <option value="도적">도적</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <select id="jobSelect" required disabled>
+                <option value="" selected disabled></option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <div class="form-group">
+              <input id="extraInfoInput" type="text" />
+            </div>
+          </div>
+          <div id="infoContent">
+            <span id="saveMsg"></span>
+            <button id="saveUserBtn" class="button-primary"></button>
+          </div>
+        </div>
+      </section>
+
+      <section id="myPartySection" class="card">
+        <h2></h2>
+
+        <div id="noPartyDiv">
+          <div class="party-name-row">
+            <input type="text" id="partyNameInput" autocomplete="off" />
+            <button id="addPositionBtn" class="icon-button"></button>
+          </div>
+
+          <div class="form-group">
+            <input type="text" id="partyDescriptionInput" maxlength="50" />
+          </div>
+
+          <div id="positionInputsContainer"></div>
+
+          <div class="button-container">
+            <button id="createPrivatePartyBtn" class="private-button" tabindex="-1"></button>
+            <button id="createPartyBtn" class="button-primary" tabindex="-1" disabled></button>
+          </div>
+
+          <ul id="positionsList"></ul>
+        </div>
+
+        <div id="partyInfoDiv" style="display:none;">
+          <h3 id="partyNameTitle"></h3>
+          <div class="party-description-container form-group">
+            <div id="partyDescriptionContainer" class="party-description-container" style="display:none;">
+              <input type="text" id="partyDescriptionEdit" maxlength="50" />
+              <button id="editDescriptionBtn" class="edit-btn"></button>
+            </div>
+            <div id="partyDescriptionView" style="display:none;"></div>
+          </div>
+          <ul id="partyMembersList" class="member-list"></ul>
+          <div id="partyControls"></div>
+        </div>
+      </section>
+    </div>
+
+    <section id="joinRequestsSection" class="card" style="display:none;">
+      <h2></h2>
+      <p id="joinRequestsHint"></p>
+      <ul id="joinRequestsList" class="request-list"></ul>
+    </section>
+
+    <section id="allPartiesSection" class="card">
+      <h2></h2>
+      <p id="connectedCount" class="connected-count"></p>
+      <input type="text" id="partySearchInput" />
+      <ul id="allPartiesList" class="party-list"></ul>
+      <p id="noPartiesMsg" style="display: none;"></p>
+    </section>
+  </div>
+
+  <footer>
+    <div class="contact-text">
+      <span id="contactText"></span>
+      <span id="email"></span>
+      <span id="copyIcon"></span>
+    </div><br>
+    <span id="copyright"></span>
+  </footer>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+
+</html>
